@@ -9,6 +9,6 @@
 
 @use "./Layout/header";
 @use "./Layout/overall";
+@use "./Layout/html";
 @use "./Layout/footer";
-
-@use "./Pages/home";
+@use "./Layout/themes";
