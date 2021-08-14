@@ -7,6 +7,7 @@ const CountryContext = createContext({
     countryIndex: {},
     countries: [],
     countryFiltersIndex: {},
+    countryNameIndex: {}
   },
   countryApi: {},
   loaded: false
@@ -31,6 +32,7 @@ const CountryContextProvider = props =>{
   useEffect(() =>{
     if ( countryApiData && countryApiData.data ) {
       const countryIndexHolder = {};
+      const countryNameIndexHolder = {};
       const countryProcessedDataHolder = [];
       const countryFilterIndexHolder = {
         Africa: [],
@@ -47,19 +49,21 @@ const CountryContextProvider = props =>{
           index,
           name: data.name
         }
-    
+
+        countryNameIndexHolder[data.name] = index;
+
         const processedData = {
           name: data.name,
           domain: data.topLevelDomain[0],
           alphaCode: data.alpha3Code,
           capital: data.capital,
           region: data.region,
-          subRegion: data.subRegion,
+          subRegion: data.subregion,
           population: data.population,
           borders: data.borders,
           nativeName: data.nativeName,
           currencies: data.currencies[0].name,
-          languages: data.languages[0].name,
+          languages: data.languages,
           flag: data.flag,
           id: data.name,
           lowered: data.name.toLowerCase()
@@ -77,6 +81,7 @@ const CountryContextProvider = props =>{
         countryIndex: countryIndexHolder,
         countries: countryProcessedDataHolder,
         countryFiltersIndex: countryFilterIndexHolder,
+        countryNameIndex: countryNameIndexHolder
       });
     }
     

@@ -9,7 +9,7 @@ const Paginate = ({ setPaginateLimit, paginateLimit, filter }) =>{
   const paginateRegion = useRef();
 
   const handlePaginateCountries = () => setPaginated(true);;
-
+  
   useEffect(() =>{
     // For ARIAS
     if ( paginated ) {
@@ -17,7 +17,7 @@ const Paginate = ({ setPaginateLimit, paginateLimit, filter }) =>{
         paginateRegion.current.textContent = "No more countries to load.";
       } else {
         setPaginateLimit(prev => prev+20);
-        paginateRegion.current.textContent = "Added 20 more countries.";
+        paginateRegion.current.textContent = `Loaded more countries`;
       }
       setTimeout(() =>{
         paginateRegion.current.textContent = "";

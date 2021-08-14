@@ -15,7 +15,7 @@ const Country = ({ country, index, paginateLimit }) =>{
   return (
     <article className="country">
       <header>
-        <Link to={`/${name}`} ref={countryLink}>
+        <Link to={`/${name}`} ref={countryLink} className="country__link">
           <img className="country__flag" src={flag} alt={name} />
         </Link>
         <h2 className="country__name">{name}</h2>

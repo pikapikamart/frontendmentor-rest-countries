@@ -1,0 +1,102 @@
+@use "../Abstract/functions" as func;
+
+
+.country-page {
+  outline: none;
+  padding: func.rem(16) func.rem(28) func.rem(40);
+
+  h3 {
+    font-weight: 800;
+  }
+
+  &__back {
+    background-color: var(--element);
+    border-radius: 4px;
+    box-shadow: 0 0 6px 2px rgba(131, 131, 131, 0.1);
+    color: var(--text);
+    display: inline-block;
+    font-size: func.rem(14);
+    font-weight: 600;
+    padding: func.rem(7) func.rem(24) func.rem(6);
+
+    &:focus-visible {
+      outline: 2px dashed rgb(104, 190, 205);
+      outline-offset: 2px;
+
+      svg {
+        transform: translateX(-25%);
+      }
+    }
+
+    svg {
+      margin-right: func.rem(9);
+      transition: transform .3s ease;
+    }
+  }
+
+  &__article {
+    margin-top: func.rem(64);
+  }
+
+  &__header {
+    padding-bottom: func.rem(24);
+  }
+
+  &__image {
+    height: func.rem(229);
+    object-fit: cover;
+  }
+
+  &__name {
+    color: var(--text);
+    font-weight: 800;
+    font-size: func.rem(22);
+    margin-top: func.rem(44);
+  }
+
+  &__informations-holder {
+    padding-bottom: func.rem(36);
+  }
+
+  &__information {
+    font-size: func.rem(14);
+    margin-bottom: func.rem(16);
+
+    span {
+      font-weight: 600;
+      margin-right: func.rem(4);
+    }
+
+    &:nth-of-type(6) {
+      margin-top: func.rem(32);
+    }
+  }
+
+  &__borders {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: func.rem(18);
+  }
+
+  &__border {
+    flex-basis: func.fluid(96, 5vw, 128);
+
+    a {
+      border-radius: func.rem(4);
+      box-shadow: 0 0 6px 2px rgba(131, 131, 131, 0.1);
+      color: var(--text);
+      display: inline-block;
+      font-size: func.rem(12);
+      margin-bottom: func.rem(6);
+      padding: func.rem(6);
+      text-align: center;
+      width: 100%;
+
+      &:focus-visible {
+        outline: 2px dashed #68becd;
+        outline-offset: 2px;
+      }
+    }
+  }
+}

@@ -1,9 +1,17 @@
-import { useRef, memo } from "react";
+import { useRef, useState, useEffect,  memo } from "react";
 
 
-const Searchbar = ({ setSearchCountry }) =>{
+const Searchbar = ({ setSearchCountry, currentCountries }) =>{
+  const [ hasSearched, setHasSearched ] = useState(false);
   const searchAriaRegion = useRef();
   const searchBar = useRef();
+
+  useEffect(() =>{
+    if ( hasSearched ) {
+      searchAriaRegion.current.textContent = `Search has found ${currentCountries.length} ${currentCountries.length<1? "country":"countries"}`;
+      setHasSearched(false);
+    }
+  }, [ hasSearched, currentCountries.length ]);
 
   const handleSearchInput = event =>{
     if ( event.target.value ) {
@@ -17,10 +25,12 @@ const Searchbar = ({ setSearchCountry }) =>{
     event.preventDefault();
     const searchValue = event.target.country.value.trim().toLowerCase();
     setSearchCountry(searchValue);
+    setHasSearched(true);
   }
 
   const handleResetSearchCountry = () =>{
     setSearchCountry("");
+    searchAriaRegion.current.textContent = "searchbar resetted";
     searchBar.current.value = "";
     searchBar.current.classList.remove("typing");
   }
@@ -28,7 +38,7 @@ const Searchbar = ({ setSearchCountry }) =>{
   // Needs to have a live region
   return (
     <form className="searchbar" onSubmit={handleSubmitSearchCountry}>
-      <div className="visually-hidden" ref={searchAriaRegion}></div>
+      <div aria-live="polite" className="visually-hidden" ref={searchAriaRegion}></div>
       <div className="searchbar__wrapper">
         <input className="searchbar__input"
           type="text"
