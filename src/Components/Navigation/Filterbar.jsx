@@ -68,7 +68,6 @@ const Filterbar = ({ setFilter, setPaginateLimit }) =>{
         <button 
           className="filterbar__toggler"
           aria-haspopup="listbox"
-          aria-labelledby="filterbarSelect"
           aria-expanded={ ariaExpanded }
           onClick={ handleFilterButtonTrigger }
           ref={ filterBarToggler }
