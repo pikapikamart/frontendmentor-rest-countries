@@ -37,6 +37,7 @@ const VisitedCountry = ({ countryId }) =>{
         <h2 className="country-page__name">{countryId}</h2>
       </header>
       <section className="country-page__container">
+        <h2 className="country-page__name_desktop">{countryId}</h2>
         <h3 className="visually-hidden">Country Information</h3>
         <ul className="country-page__informations-holder">
           <li className="country-page__information">
@@ -72,7 +73,7 @@ const VisitedCountry = ({ countryId }) =>{
             {countryInformations.languages.reduce(( accu, curr )=>accu.concat(curr.name), []).join(",")}
           </li>
         </ul>
-        <div>
+        <div className="country-page__borders-holder">
           <h3>Border Countries: </h3>
           <ul className="country-page__borders">
             {renderBorderCountries()}

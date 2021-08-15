@@ -35,7 +35,6 @@ const Searchbar = ({ setSearchCountry, currentCountries }) =>{
     searchBar.current.classList.remove("typing");
   }
 
-  // Needs to have a live region
   return (
     <form className="searchbar" onSubmit={handleSubmitSearchCountry}>
       <div aria-live="polite" className="visually-hidden" ref={searchAriaRegion}></div>

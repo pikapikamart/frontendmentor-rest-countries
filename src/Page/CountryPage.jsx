@@ -11,13 +11,17 @@ const CountryPage = () =>{
 
 
   useEffect(() =>{
-    window.scrollTo(0, 0)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
     const timeout = setTimeout(() => countryPageMain.current.focus(), 100);
     return () => clearTimeout(timeout);
   }, [ id ])
   
   return (
     <main className="country-page" tabIndex="-1" ref={countryPageMain}>
+      <div className="country-page__maxwidth">
       <div>
         <Link to="/" className="country-page__back">
           <svg aria-hidden xmlns="http://www.w3.org/2000/svg" width="15.882" height="10" viewBox="0 0 15.882 10">
@@ -28,6 +32,7 @@ const CountryPage = () =>{
         </Link>        
       </div>
       {loaded && <VisitedCountry countryId={id} />}
+      </div>
     </main>
   );
 }

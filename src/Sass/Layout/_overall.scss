@@ -3,16 +3,24 @@
 
 
 .header {
-  align-items: center;
-  box-shadow: 0 4px 8px 4px rgba(100, 100, 100, .1);
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: func.rem(24);
-  padding: func.rem(32) func.rem(16) func.rem(30);
+  background-color: var(--element);
+  box-shadow: 0 4px 8px 4px rgba(49, 49, 49, 0.1);
+  color: var(--text); 
+  margin-bottom: func.fluid(24, 5vw, 48);
+  padding: func.rem(32) func.fluid(16, 8vw, 80) func.rem(30);
+  transition: background-color .4s ease,
+              color .4s ease;
+
+  &__wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    max-width: func.rem(1600);
+    margin: 0 auto ;
+  }
 
   &__landmark {
-    color: var(--text);
-    font-size: func.rem(14);
+    font-size: func.fluid(14, 4vw, 24);
     font-weight: 800;
   }
 }
@@ -53,24 +61,13 @@
         }
       }
     }
-
-    &:last-of-type {
-
-      &:checked {
-
-        + label {
-          #{$root}__icon-fill {
-            // change these
-          fill: red;
-          }
-        }
-      }
-    }
   }
 
   &__toggler {
-    font-size: func.rem(12);
+    color: var(--text);
+    font-size: func.fluid(12, 2vw, 16);
     font-weight: 600;
+    transition: color .4s ease;
 
     &:first-of-type {
       height: 100%;
@@ -88,5 +85,19 @@
 
   &__icon {
     margin-right: func.rem(9);
+    height: func.fluid(13, 2vw, 16);
+    width: func.fluid(13, 2vw, 16);;
+
+    path {
+      transition: fill .4s ease;
+
+      &:first-of-type {
+        fill: #FFFFFF;
+      }
+
+      &:last-of-type {
+        fill: var(--text);
+      }
+    }
   }
 }
