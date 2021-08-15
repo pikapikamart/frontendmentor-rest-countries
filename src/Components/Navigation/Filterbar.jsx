@@ -10,7 +10,10 @@ const Filterbar = ({ setFilter, setPaginateLimit }) =>{
   const handleFilterButtonTrigger = () => setAriaExpanded(prev => !prev);
 
   useEffect(() =>{
-    if ( ariaExpanded ) filterBarSelections.current.focus();
+    if ( ariaExpanded ) {
+      const timeout = setTimeout(() => filterBarSelections.current.focus(), 100);
+      return () => clearTimeout(timeout);
+    }
   }, [ ariaExpanded ]);
 
   const resetRegionSelections = () =>{
