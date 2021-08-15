@@ -295,3 +295,19 @@
     justify-content: space-between;
   }
 }
+
+@media (min-width: 62.5em) {
+  .filterbar {
+
+    &__option {
+      cursor: pointer;
+      transition: transform .3s ease,
+                  background-color .3s ease;
+
+      &:hover {
+        background-color: var(--dropdown);
+        transform: translateX(5%);
+      }
+    }
+  }
+}
