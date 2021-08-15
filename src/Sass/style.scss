@@ -7,8 +7,9 @@
 @use "./Base/base";
 @use "./Base/helpers";
 
-@use "./Layout/header";
 @use "./Layout/overall";
 @use "./Layout/html";
-@use "./Layout/footer";
 @use "./Layout/themes";
+
+@use "./Page/countrypage";
+@use "./Page/homepage";

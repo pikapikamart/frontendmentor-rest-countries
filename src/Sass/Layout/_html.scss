@@ -4,6 +4,8 @@
 body {
   background-color: var(--background);
   font-family: 'Nunito Sans', sans-serif;
+  outline: none;
+  transition: background-color .4s ease;
 }
 
 button,

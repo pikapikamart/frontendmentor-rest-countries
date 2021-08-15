@@ -1,51 +1,53 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
+import CountryContext from "../Store/Context";
 import Navigation from "../Components/Navigation/Navigation";
 import Filterbar from "../Components/Navigation/Filterbar";
 import Searchbar from "../Components/Navigation/Searchbar";
-import CountryContext from "../Store/Context";
 import Countries from "../Components/Countries/Countries";
 import Paginate from "../Components/Countries/Paginate";
 
 
 const HomePage = () =>{
   const countryContextData = useContext(CountryContext);
-  const [ countries, setCountries ] = useState([]);
+  const { countryData, loaded } = countryContextData;
   const [ filter, setFilter ] = useState("None");
   const [ paginateLimit, setPaginateLimit ] = useState(20);
   const [ searchCountry, setSearchCountry ] = useState("");
 
-  const paginateInverse = <Paginate paginateLimit={paginateLimit} setPaginateLimit={setPaginateLimit} filter={filter} />
+  const paginateInverse = <Paginate setPaginateLimit={setPaginateLimit} />
 
   const processCountryToDisplay = () =>{
     if ( searchCountry ) {
-      const filterCountries = countries.filter(country => country.lowered.includes(searchCountry));
+      const filterCountries = countryData.countries.filter(country => country.lowered.includes(searchCountry));
       return filterCountries;
     } else {
-      return countries;
+      return countryData.countries || [];
     }
   }
-  
-  useEffect(() =>{
-    if ( countryContextData && countryContextData.loaded ) {
-      setCountries(countryContextData.countryData.countries);
-    }
-  }, [ countryContextData ])
+
+  useEffect(() => {
+    document.body.focus();
+    const timeout = setTimeout(() => document.body.blur(), 100);
+    return () => clearTimeout(timeout);
+  }, [])
 
   return (
-    <main className="homepage">
-      <h1 className="visually-hidden">Countries from around the world</h1>
-      <Navigation>
-        <Searchbar setSearchCountry={setSearchCountry} />
-        <Filterbar setFilter={setFilter} setPaginateLimit={setPaginateLimit} />
-      </Navigation>
-      {countryContextData.loaded && <Countries 
-                                      filter={filter} 
-                                      paginateLimit={paginateLimit}
-                                      paginateInverse={paginateInverse}
-                                      currentCountries={processCountryToDisplay()}
-                                      searchCountry={searchCountry}
-                                       />}
+    <main className="homepage" >
+      <div className="homepage__maxwidth">
+        <h1 className="visually-hidden">Countries from around the world</h1>
+        <Navigation>
+          <Searchbar setSearchCountry={setSearchCountry} currentCountries={processCountryToDisplay()} />
+          <Filterbar setFilter={setFilter} setPaginateLimit={setPaginateLimit} />
+        </Navigation>
+        {loaded && <Countries 
+                    filter={filter} 
+                    paginateLimit={paginateLimit}
+                    paginateInverse={paginateInverse}
+                    currentCountries={processCountryToDisplay()}
+                    searchCountry={searchCountry}
+                     />}
+      </div>
     </main>
   );
 }

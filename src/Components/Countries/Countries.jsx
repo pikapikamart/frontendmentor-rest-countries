@@ -37,7 +37,7 @@ const Countries = ({ filter, paginateLimit, paginateInverse, currentCountries, s
       <div className="country-grid">
         {renderCountries()}
       </div>
-      {paginateInverse}
+      { renderCountries().length >= paginateLimit && paginateInverse }
     </div>
   );
 }

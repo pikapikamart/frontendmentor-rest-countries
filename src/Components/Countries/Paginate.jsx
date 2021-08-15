@@ -1,40 +1,38 @@
-import { useRef, useEffect, useContext, useState } from "react"
+import { useRef, useEffect, useState } from "react"
 
-import CountryContext from "../../Store/Context";
 
-const Paginate = ({ setPaginateLimit, paginateLimit, filter }) =>{
-  const countryContextData = useContext(CountryContext);
-  const { countryData: { countryFiltersIndex }} = countryContextData;
+const Paginate = ({ setPaginateLimit }) =>{
+  const [ , setUpdate ] = useState(false);
   const [ paginated, setPaginated ] = useState(false);
   const paginateRegion = useRef();
 
   const handlePaginateCountries = () => setPaginated(true);;
+  
+  useEffect(() =>{
+    setUpdate(true);
+  }, [])
 
   useEffect(() =>{
-    // For ARIAS
     if ( paginated ) {
-      if ( filter!=="None" && countryFiltersIndex[filter].length < paginateLimit ) {
-        paginateRegion.current.textContent = "No more countries to load.";
-      } else {
-        setPaginateLimit(prev => prev+20);
-        paginateRegion.current.textContent = "Added 20 more countries.";
-      }
+      paginateRegion.current.textContent = `Loaded more countries`;
       setTimeout(() =>{
         paginateRegion.current.textContent = "";
+        setPaginateLimit(prev => prev+20);
       }, 100)
       setPaginated(false);
     }
-  }, [ filter, paginated, paginateLimit, setPaginateLimit, countryFiltersIndex ])
+  }, [ paginated, setPaginateLimit ])
 
   return(
     <div className="paginate">
       <div
         className="paginate__aria-live visually-hidden" 
         aria-live="polite"
-        ref={paginateRegion}>
+        ref={paginateRegion}
+        >
       </div>
       <button
-        aria-label="load 20 more countries" 
+        aria-label="load more countries" 
         className="paginate__toggler"
         onClick={handlePaginateCountries}>
           Load More
