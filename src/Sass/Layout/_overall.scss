@@ -101,3 +101,13 @@
     }
   }
 }
+
+@media (min-width: 62.5em) {
+
+  .colormodes {
+
+    &__last {
+      cursor: pointer;
+    }
+  }
+}

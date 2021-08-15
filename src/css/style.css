@@ -3,7 +3,7 @@
   --text: rgb(17, 21, 23);
   --element: rgb(255, 255, 255);
   --input: rgb(133, 133, 133);
-  --dropdown: rgba(197, 63, 63, 0.1);
+  --dropdown: rgba(112, 112, 112, 0.1);
   --information: rgb(87, 87, 87);
 }
 
@@ -160,6 +160,11 @@ button {
   fill: var(--text);
 }
 
+@media (min-width: 62.5em) {
+  .colormodes__last {
+    cursor: pointer;
+  }
+}
 body {
   background-color: var(--background);
   font-family: "Nunito Sans", sans-serif;
@@ -607,6 +612,19 @@ input:focus-visible {
 
   .country-grid {
     justify-content: space-between;
+  }
+}
+@media (min-width: 62.5em) {
+  .filterbar__option {
+    cursor: pointer;
+    transition: background-color 0.3s ease, -webkit-transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, -webkit-transform 0.3s ease;
+  }
+  .filterbar__option:hover {
+    background-color: var(--dropdown);
+    -webkit-transform: translateX(5%);
+            transform: translateX(5%);
   }
 }
 /*# sourceMappingURL=style.css.map */
