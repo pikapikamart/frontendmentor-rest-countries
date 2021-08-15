@@ -164,6 +164,7 @@
 
       + #{$root}__selections {
         max-height: func.rem(300);
+        visibility: visible;
       }
     }
   }
@@ -180,8 +181,10 @@
     top: func.fluid(52, 6vw, 60);
     transition: max-height .3s ease,
                 background-color .4s ease,
-                color .4s ease;
+                color .4s ease,
+                visibility .1s ease;
     width: func.rem(200);
+    visibility: hidden;
     z-index: 10;
 
     &:focus {
