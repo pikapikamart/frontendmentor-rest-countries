@@ -1,7 +1,10 @@
-import { useState, useRef, useEffect, memo } from "react";
+import { useState, useRef, useEffect, memo, useContext } from "react";
 
+import CountryContext from "../../Store/Context";
 
 const Filterbar = ({ setFilter, setPaginateLimit }) =>{
+  const countries = useContext(CountryContext);
+  const { countryData: {countryFiltersIndex} } = countries;
   const [ ariaExpanded, setAriaExpanded ] = useState(false);
   const [ selectedRegion, setSelectedRegion ] = useState("None");
   const filterBarToggler = useRef();
@@ -31,9 +34,9 @@ const Filterbar = ({ setFilter, setPaginateLimit }) =>{
 
   const regionSelectionsCompleted = region =>{
     setAriaExpanded(false);
-    setSelectedRegion(region.id);
+    setSelectedRegion(region.textContent);
     setPaginateLimit(20);
-    setFilter(region.id);
+    setFilter(region.textContent);
     handleRegionSelecting(region);
     filterBarToggler.current.focus();
     region.setAttribute("aria-selected", "true");
@@ -47,7 +50,6 @@ const Filterbar = ({ setFilter, setPaginateLimit }) =>{
       const activeSelectedRegionElement = filterBarSelections.current.querySelector(`#${activeSelectedRegionId}`);
       const newSelectedRegion = key==="Enter"? activeSelectedRegionElement:
                                 key==="ArrowDown"? activeSelectedRegionElement.nextElementSibling : activeSelectedRegionElement.previousElementSibling;
-
       if ( activeSelectedRegionElement===newSelectedRegion ) {
         regionSelectionsCompleted(newSelectedRegion);
       }else if ( newSelectedRegion ) {
@@ -60,6 +62,14 @@ const Filterbar = ({ setFilter, setPaginateLimit }) =>{
     const selectedRegionItem = event.target.closest("li");
     if ( !selectedRegionItem ) return;
     regionSelectionsCompleted(selectedRegionItem);
+  }
+
+  const renderFilterBarRegions = () =>{
+    const filters = [];
+    for ( const filter in countryFiltersIndex ) {
+      filters.push(<li className="filterbar__option" aria-selected="false" role="option" id={filter.replace(/\s+/g, '')} key={filter}>{filter}</li>)
+    }
+    return filters;
   }
 
   return (
@@ -83,13 +93,7 @@ const Filterbar = ({ setFilter, setPaginateLimit }) =>{
           onKeyDown={ handleKeyboardRegionSelections }
           onClick={ handleClickRegionSelection }
         >
-          <li className="filterbar__option" aria-selected="false" role="option" id="Africa">Africa</li>
-          <li className="filterbar__option" aria-selected="false" role="option" id="Americas">America</li>
-          <li className="filterbar__option" aria-selected="false" role="option" id="Asia">Asia</li>
-          <li className="filterbar__option" aria-selected="false" role="option" id="Europe">Europe</li>
-          <li className="filterbar__option" aria-selected="false" role="option" id="Oceania">Oceania</li>
-          <li className="filterbar__option" aria-selected="false" role="option" id="Polar">Polar</li>
-          <li className="filterbar__option" aria-selected="false" role="option" id="Islands">Islands</li>
+          {renderFilterBarRegions()}
           <li className="filterbar__option" aria-selected="false" role="option" id="None">None</li>
         </ul>
       </div>

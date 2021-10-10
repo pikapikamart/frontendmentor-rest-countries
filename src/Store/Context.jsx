@@ -18,7 +18,7 @@ export default CountryContext;
 
 const countryApiOptions =() =>({
   method: "get",
-  url: "https://restcountries.eu/rest/v2/all"
+  url: "https://restcountries.com/v2/all"
 });
 
 
@@ -34,16 +34,8 @@ const CountryContextProvider = props =>{
       const countryIndexHolder = {};
       const countryNameIndexHolder = {};
       const countryProcessedDataHolder = [];
-      const countryFilterIndexHolder = {
-        Africa: [],
-        Americas: [],
-        Asia: [],
-        Europe: [],
-        Oceania: [],
-        Polar: [],
-        Islands: []
-      };
-    
+      const countryFilterIndexHolder = {};
+
       countryApiData.data.forEach(( data, index ) =>{
         countryIndexHolder[data.alpha3Code] = {
           index,
@@ -51,7 +43,6 @@ const CountryContextProvider = props =>{
         }
 
         countryNameIndexHolder[data.name] = index;
-
         const processedData = {
           name: data.name,
           domain: data.topLevelDomain[0],
@@ -60,19 +51,21 @@ const CountryContextProvider = props =>{
           region: data.region,
           subRegion: data.subregion,
           population: data.population,
-          borders: data.borders,
+          borders: data?.borders ?? [],
           nativeName: data.nativeName,
-          currencies: data.currencies[0].name,
+          currencies: data.currencies?.[0].name,
           languages: data.languages,
-          flag: data.flag,
+          flag: data.flags.svg,
           id: data.name,
           lowered: data.name.toLowerCase()
         }
-        if (data.region) {
-          countryFilterIndexHolder[data.region].push(index);
+
+        if ( countryFilterIndexHolder.hasOwnProperty(data.region)) {
+          countryFilterIndexHolder[data.region].push(index)
         } else {
-          countryFilterIndexHolder["Islands"].push(index);
+          countryFilterIndexHolder[data.region] = [index];
         }
+  
         countryProcessedDataHolder.push(processedData);
       })
       
