@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-Live Site URL: [Live site of the challenge](https://cocky-booth-9d499e.netlify.app/)
+Live Site URL: [Live site of the challenge](https://dazzling-johnson-044439.netlify.app/)
 
 ## My process
 
