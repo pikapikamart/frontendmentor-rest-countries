@@ -20,8 +20,7 @@ const Country = ({ country, index, paginateLimit }) =>{
         </Link>
         <h2 className="country__name">{name}</h2>
       </header>
-      <section className="country__information-container">
-        <h3 className="visually-hidden">Country Information overview</h3>
+      <div className="country__information-container">
         <ul className="country__information-block">
           <li className="country__information">
             <span>Population:</span>
@@ -36,7 +35,7 @@ const Country = ({ country, index, paginateLimit }) =>{
             {capital}
           </li>
         </ul>
-      </section>
+      </div>
     </article>
   );
 }
