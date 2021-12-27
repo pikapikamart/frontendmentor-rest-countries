@@ -230,12 +230,6 @@
     outline-offset: 2px;
   }
 
-  &__link {
-    display: block;
-    max-height: func.rem(160);
-    overflow: hidden;
-  }
-
   &__flag {
     height: func.rem(160);
     object-fit: cover;
@@ -246,6 +240,10 @@
     font-size: func.rem(18);
     font-weight: 800;
     padding: func.rem(25) func.rem(24) func.rem(0);
+
+    > a {
+      color: rgb(0, 0, 0);
+    }
   }
 
   &__information-container {

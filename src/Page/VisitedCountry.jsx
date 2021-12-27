@@ -29,16 +29,15 @@ const VisitedCountry = ({ countryId }) =>{
   }
 
   return (
-    <article className="country-page__article">
-      <header className="country-page__header">
+    <div className="country-page__article">
+      <div className="country-page__header">
         <div className="country-page__img-holder">
           <img src={countryInformations.flag} alt={countryId} className="country-page__image" />
         </div>
-        <h2 className="country-page__name">{countryId}</h2>
-      </header>
+        <h1 className="country-page__name">{countryId}</h1>
+      </div>
       <section className="country-page__container">
         <h2 className="country-page__name_desktop">{countryId}</h2>
-        <h3 className="visually-hidden">Country Information</h3>
         <ul className="country-page__informations-holder">
           <li className="country-page__information">
             <span>Native Name:</span>
@@ -74,13 +73,13 @@ const VisitedCountry = ({ countryId }) =>{
           </li>
         </ul>
         <div className="country-page__borders-holder">
-          <h3>Border Countries: </h3>
+          <h2>Border Countries: </h2>
           <ul className="country-page__borders">
             {renderBorderCountries()}
           </ul>
         </div>
       </section>
-    </article>
+    </div>
   );
 }
 

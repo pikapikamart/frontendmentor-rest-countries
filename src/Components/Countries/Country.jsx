@@ -13,13 +13,15 @@ const Country = ({ country, index, paginateLimit }) =>{
   }, [ index, paginateLimit ])
 
   return (
-    <article className="country">
-      <header>
-        <Link to={`/${name}`} ref={countryLink} className="country__link">
-          <img className="country__flag" src={flag} alt={name} />
-        </Link>
-        <h2 className="country__name">{name}</h2>
-      </header>
+    <div className="country">
+
+        <img className="country__flag" src={flag} alt={name} />
+        <h2 className="country__name">
+          <Link to={`/${name}`} ref={countryLink}>
+            {name}
+          </Link>
+        </h2>
+
       <div className="country__information-container">
         <ul className="country__information-block">
           <li className="country__information">
@@ -36,7 +38,7 @@ const Country = ({ country, index, paginateLimit }) =>{
           </li>
         </ul>
       </div>
-    </article>
+    </div>
   );
 }
 

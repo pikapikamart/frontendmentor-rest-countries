@@ -557,11 +557,6 @@ input:focus-visible {
   outline: 2px dashed #68becd;
   outline-offset: 2px;
 }
-.country__link {
-  display: block;
-  max-height: 10rem;
-  overflow: hidden;
-}
 .country__flag {
   height: 10rem;
   object-fit: cover;
@@ -571,6 +566,9 @@ input:focus-visible {
   font-size: 1.125rem;
   font-weight: 800;
   padding: 1.5625rem 1.5rem 0rem;
+}
+.country__name > a {
+  color: rgba(0, 0, 0);
 }
 .country__information-container {
   font-size: 0.875rem;
