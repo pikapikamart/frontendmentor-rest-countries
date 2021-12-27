@@ -568,7 +568,7 @@ input:focus-visible {
   padding: 1.5625rem 1.5rem 0rem;
 }
 .country__name > a {
-  color: rgba(0, 0, 0);
+  color: var(--text);
 }
 .country__information-container {
   font-size: 0.875rem;

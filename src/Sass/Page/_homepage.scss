@@ -242,7 +242,7 @@
     padding: func.rem(25) func.rem(24) func.rem(0);
 
     > a {
-      color: rgb(0, 0, 0);
+      color: var(--text);
     }
   }
 

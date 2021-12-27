@@ -73,7 +73,7 @@ const VisitedCountry = ({ countryId }) =>{
           </li>
         </ul>
         <div className="country-page__borders-holder">
-          <h2>Border Countries: </h2>
+          <h3>Border Countries: </h3>
           <ul className="country-page__borders">
             {renderBorderCountries()}
           </ul>
